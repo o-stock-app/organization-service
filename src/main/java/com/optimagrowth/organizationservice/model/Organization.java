@@ -1,11 +1,7 @@
 package com.optimagrowth.organizationservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -13,10 +9,14 @@ import java.util.UUID;
 @Table(name = "organizations")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Organization {
 
     @Id
-    @Column(name = "organization_id", nullable = false)
+    @GeneratedValue(generator = "UUID")
+    @Column(name = "organization_id", nullable = false, updatable = false)
     UUID id;
 
     @Column(name = "name", nullable = false)
@@ -30,6 +30,5 @@ public class Organization {
 
     @Column(name = "contact_phone", nullable = false)
     String contactPhone;
-
 }
 

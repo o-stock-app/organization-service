@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -16,12 +17,17 @@ public class OrganizationController {
 
     private final OrganizationService service;
 
-    @GetMapping(value="/{organizationId}")
+    @GetMapping("/{organizationId}")
     public ResponseEntity<Organization> getOrganization( @PathVariable("organizationId") UUID organizationId) {
         return ResponseEntity.ok(service.findById(organizationId));
     }
 
-    @PutMapping(value="/{organizationId}")
+    @GetMapping("/all")
+    public ResponseEntity<List<Organization>> getOrganization() {
+        return ResponseEntity.ok(service.findAll());
+    }
+
+    @PutMapping("/{organizationId}")
     public void updateOrganization( @PathVariable("organizationId") String UUID, @RequestBody Organization organization) {
         service.update(organization);
     }

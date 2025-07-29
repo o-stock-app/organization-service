@@ -5,6 +5,7 @@ import com.optimagrowth.organizationservice.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,11 +20,14 @@ public class OrganizationService {
         return (opt.isPresent()) ? opt.get() : null;
     }
 
+    public List<Organization> findAll() {
+        return orgRepo.findAll();
+    }
+
     public Organization create(Organization organization){
         organization.setId(UUID.randomUUID());
         organization = orgRepo.save(organization);
         return organization;
-
     }
 
     public void update(Organization organization){
