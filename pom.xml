@@ -121,11 +121,6 @@
 					</from>
 					<to>
 						<image>ostock/organization-service:${project.version}</image>
-<!--						<image>ghcr.io/username/organization-service:${project.version}</image>-->
-<!--						<auth>-->
-<!--							<username>username</username>-->
-<!--							<password>github token</password>-->
-<!--						</auth>-->
 					</to>
 					<container>
 						<ports>

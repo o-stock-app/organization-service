@@ -5,6 +5,7 @@ import com.optimagrowth.organizationservice.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -37,4 +38,24 @@ public class OrganizationService {
     public void delete(Organization organization){
         orgRepo.deleteById(organization.getId());
     }
+
+
+    public List<Organization> findBtsLicences() {
+        List<Organization> orgs = new ArrayList<>();
+
+        for (int i = 1; i <= 100; i++) {
+            String uniqueSuffix = UUID.randomUUID().toString().substring(0, 8);
+
+            Organization org = Organization.builder()
+                    .name("Org-" + uniqueSuffix)
+                    .contactName("Contact " + i)
+                    .contactEmail("contact" + uniqueSuffix + "@example.com")
+                    .contactPhone("080" + String.format("%08d", i))
+                    .build();
+            orgs.add(org);
+            orgRepo.saveAll(orgs);
+        }
+        return orgs;
+    }
+
 }

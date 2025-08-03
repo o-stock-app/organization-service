@@ -27,6 +27,11 @@ public class OrganizationController {
         return ResponseEntity.ok(service.findAll());
     }
 
+    @GetMapping("/bootstrap")
+    public ResponseEntity<List<Organization>> getBootstappedOrgs() {
+        return ResponseEntity.ok(service.findBtsLicences());
+    }
+
     @PutMapping("/{organizationId}")
     public void updateOrganization( @PathVariable("organizationId") String UUID, @RequestBody Organization organization) {
         service.update(organization);
