@@ -41,6 +41,11 @@ public class OrganizationService {
 
 
     public List<Organization> findBtsLicences() {
+        List<Organization> existingLicenses = orgRepo.findAll();
+
+        if (existingLicenses != null)
+            return existingLicenses;
+
         List<Organization> orgs = new ArrayList<>();
 
         for (int i = 1; i <= 100; i++) {

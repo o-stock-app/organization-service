@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("optima/v1/organization")
+@RequestMapping("/optima/v1/organization")
 @RequiredArgsConstructor
 public class OrganizationController {
 
