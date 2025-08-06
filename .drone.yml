@@ -28,7 +28,8 @@ steps:
         path: /var/run/docker.sock
     commands:
       - cd /drone/src
-      - docker-compose down --remove-orphans || true
+      - docker-compose stop orgservice || true
+      - docker-compose rm -f orgservice || true
 
   - name: start-new-container
     image: docker/compose:latest
@@ -37,7 +38,7 @@ steps:
         path: /var/run/docker.sock
     commands:
       - cd /drone/src
-      - docker-compose up -d
+      - docker-compose up -d orgservice
 
 volumes:
   - name: dockersock
