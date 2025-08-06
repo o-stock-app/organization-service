@@ -17,6 +17,12 @@ public class OrganizationController {
 
     private final OrganizationService service;
 
+    @GetMapping("/test")
+    public ResponseEntity<?> getLicense() {
+
+        return ResponseEntity.ok("Hello, Organization service is up and running.");
+    }
+
     @GetMapping("/{organizationId}")
     public ResponseEntity<Organization> getOrganization( @PathVariable("organizationId") UUID organizationId) {
         return ResponseEntity.ok(service.findById(organizationId));
