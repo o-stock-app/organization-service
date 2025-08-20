@@ -3,6 +3,8 @@ package com.optimagrowth.organizationservice.service;
 import com.optimagrowth.organizationservice.model.Organization;
 import com.optimagrowth.organizationservice.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,11 +16,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrganizationService {
 
+    private static final Logger log = LoggerFactory.getLogger(OrganizationService.class);
     private final OrganizationRepository orgRepo;
 
     public Organization findById(UUID organizationId) {
         Optional<Organization> opt = orgRepo.findById(organizationId);
-        return (opt.isPresent()) ? opt.get() : null;
+
+        if (opt.isPresent())
+            return opt.get();
+        else
+            log.warn("Organization with id: {} not found", organizationId);
+
+        return null;
     }
 
     public List<Organization> findAll() {
@@ -59,7 +68,9 @@ public class OrganizationService {
                     .build();
             orgs.add(org);
             orgRepo.saveAll(orgs);
+            log.info("all orgs saved");
         }
+        log.info("all orgs returned");
         return orgs;
     }
 
