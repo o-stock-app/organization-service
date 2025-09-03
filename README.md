@@ -55,3 +55,8 @@ Base path: `/optima/v1/organization`
 ```bash
 ./mvnw clean install
 ./mvnw spring-boot:run
+
+### user docker
+docker build -t organization-service .
+docker run -p 8081:8081 organization-service
+
